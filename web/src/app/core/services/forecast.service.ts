@@ -15,4 +15,8 @@ export class ForecastService {
   inputs(stationId?: string): Observable<ForecastInput[]> {
     return this.api.get<ForecastInput[]>('forecast/inputs', stationId ? { stationId } : undefined);
   }
+
+  createInput(input: Omit<ForecastInput, 'id'>): Observable<ForecastInput> {
+    return this.api.post<ForecastInput>('forecast/inputs', input);
+  }
 }

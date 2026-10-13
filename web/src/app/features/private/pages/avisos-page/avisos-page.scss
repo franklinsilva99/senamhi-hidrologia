@@ -4,6 +4,117 @@
   gap: 1rem;
 }
 
+.tabs {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid var(--color-border, #e2e8f0);
+  padding-bottom: 0.5rem;
+
+  button {
+    border: none;
+    background: transparent;
+    padding: 0.4rem 1rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    border-bottom: 2px solid transparent;
+
+    &.activo {
+      border-bottom-color: #0070ba;
+      color: #0070ba;
+      font-weight: 600;
+    }
+  }
+}
+
+// ── Mapa ────────────────────────────────────────────────────────────────────
+
+.mapa-contenedor {
+  position: relative;
+}
+
+.mapa {
+  height: 600px;
+  width: 100%;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.panel-niveles {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  z-index: 500;
+  width: 280px;
+  background: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+}
+
+.panel-titulo {
+  text-align: center;
+  font-weight: 700;
+  color: #dc3545;
+  margin: 0 0 0.5rem;
+}
+
+.tipo-botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  .tipo-label {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  button {
+    border: none;
+    background: transparent;
+    color: #c9c9c9;
+    cursor: pointer;
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+
+    &.activo {
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-weight: 700;
+    }
+  }
+}
+
+.nivel-botones {
+  display: flex;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+
+  button {
+    flex: 1;
+    border: none;
+    padding: 0.15rem 0;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 2px;
+    font-size: 0.7rem;
+  }
+}
+
+.peligro,
+.recomendacion {
+  text-align: justify;
+  line-height: 1.4;
+  margin: 0.35rem 0 0;
+
+  strong {
+    color: #dc3545;
+  }
+}
+
+// ── Lista ───────────────────────────────────────────────────────────────────
+
 .filtros {
   display: flex;
   flex-wrap: wrap;

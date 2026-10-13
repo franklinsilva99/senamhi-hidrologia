@@ -73,5 +73,11 @@ public class StationController {
         if (body.getVariables() != null) {
             s.setVariables(body.getVariables());
         }
+        if (body.getPoblados() != null) {
+            s.setPoblados(body.getPoblados());
+        }
+        if (body.getPobladosGeo() != null) {
+            s.setPobladosGeo(body.getPobladosGeo());
+        }
     }
 }

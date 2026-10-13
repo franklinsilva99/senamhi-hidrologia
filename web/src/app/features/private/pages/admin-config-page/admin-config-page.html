@@ -50,21 +50,21 @@
     <div class="dialog-grid">
       <h3>Avenida ↑</h3>
       <div class="fila">
-        <label>Amarilla <p-inputNumber [(ngModel)]="form().avAmarilla" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
-        <label>Naranja <p-inputNumber [(ngModel)]="form().avNaranja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
-        <label>Roja <p-inputNumber [(ngModel)]="form().avRoja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+        <label>Amarilla <input type="number" step="any" [(ngModel)]="form().avAmarilla" /></label>
+        <label>Naranja <input type="number" step="any" [(ngModel)]="form().avNaranja" /></label>
+        <label>Roja <input type="number" step="any" [(ngModel)]="form().avRoja" /></label>
       </div>
       <h3>Vigilancia ↓</h3>
       <div class="fila">
-        <label>Amarilla <p-inputNumber [(ngModel)]="form().vigAmarilla" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
-        <label>Naranja <p-inputNumber [(ngModel)]="form().vigNaranja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
-        <label>Roja <p-inputNumber [(ngModel)]="form().vigRoja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+        <label>Amarilla <input type="number" step="any" [(ngModel)]="form().vigAmarilla" /></label>
+        <label>Naranja <input type="number" step="any" [(ngModel)]="form().vigNaranja" /></label>
+        <label>Roja <input type="number" step="any" [(ngModel)]="form().vigRoja" /></label>
       </div>
       <h3>Vigencia (horas)</h3>
       <div class="fila">
-        <label>Amarilla <p-inputNumber [(ngModel)]="form().vAmarilla" /></label>
-        <label>Naranja <p-inputNumber [(ngModel)]="form().vNaranja" /></label>
-        <label>Roja <p-inputNumber [(ngModel)]="form().vRoja" /></label>
+        <label>Amarilla <input type="number" step="1" [(ngModel)]="form().vAmarilla" /></label>
+        <label>Naranja <input type="number" step="1" [(ngModel)]="form().vNaranja" /></label>
+        <label>Roja <input type="number" step="1" [(ngModel)]="form().vRoja" /></label>
       </div>
     </div>
     <ng-template #footer>

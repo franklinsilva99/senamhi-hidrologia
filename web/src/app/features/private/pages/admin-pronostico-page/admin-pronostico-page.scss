@@ -1,0 +1,96 @@
+.admin-pronostico {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.titulo {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.subtitulo {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.formulario {
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 8px;
+  background: #fff;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.fila-selectores {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+
+  label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--color-text-muted, #64748b);
+  }
+
+  input[type='date'] {
+    border: 1px solid var(--color-border-input, #cbd5e1);
+    border-radius: 4px;
+    padding: 0.5rem;
+  }
+}
+
+.modelos-tabla {
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    border: 1px solid var(--color-border, #e2e8f0);
+    padding: 0.4rem;
+    text-align: center;
+    font-size: 0.85rem;
+  }
+
+  th {
+    background: #f8fafc;
+  }
+
+  .fecha {
+    font-weight: 600;
+  }
+
+  input {
+    width: 100%;
+    border: none;
+    text-align: center;
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+}
+
+.acciones {
+  display: flex;
+  justify-content: center;
+}
+
+.mensaje {
+  text-align: center;
+  color: #166534;
+  font-weight: 600;
+  font-size: 0.9rem;
+}

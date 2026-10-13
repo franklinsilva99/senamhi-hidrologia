@@ -3,7 +3,6 @@ import { firstValueFrom } from 'rxjs';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { FormsModule } from '@angular/forms';
 
 import { ConfigRecordService } from '../../../../core/services/config-record.service';
@@ -25,7 +24,7 @@ interface UmbralesForm {
 
 @Component({
   selector: 'app-admin-config-page',
-  imports: [TableModule, ButtonModule, DialogModule, InputNumberModule, FormsModule],
+  imports: [TableModule, ButtonModule, DialogModule, FormsModule],
   templateUrl: './admin-config-page.html',
   styleUrl: './admin-config-page.scss',
 })

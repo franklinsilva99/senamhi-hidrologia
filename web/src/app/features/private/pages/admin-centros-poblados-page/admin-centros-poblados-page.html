@@ -1,0 +1,77 @@
+<div class="admin-centros">
+  <h1 class="titulo">Centros Poblados Afectados</h1>
+
+  @if (mensaje()) {
+    <div class="mensaje">✓ {{ mensaje() }}</div>
+  }
+
+  <p-table [value]="stations()" [loading]="cargando()" [scrollable]="true" scrollHeight="520px">
+    <ng-template #header>
+      <tr>
+        <th>DZ</th>
+        <th>Estación</th>
+        <th>Río</th>
+        <th>Departamento</th>
+        <th>Centros Poblados</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-s>
+      <tr>
+        <td>{{ s.dz ?? '—' }}</td>
+        <td>{{ s.estacion }}</td>
+        <td>{{ s.rio }}</td>
+        <td>{{ s.departamento }}</td>
+        <td>
+          @if ((s.poblados ?? []).length === 0) {
+            —
+          } @else {
+            {{ (s.poblados ?? []).join(', ') }}
+          }
+        </td>
+        <td>
+          <p-button label="Editar" size="small" [outlined]="true" (onClick)="abrirEdicion(s)" />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    [header]="'Centros poblados — ' + (estacionEditando()?.estacion ?? '')"
+    [(visible)]="editando"
+    [modal]="true"
+    [style]="{ width: '620px' }"
+  >
+    <table class="poblados-tabla">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Latitud</th>
+          <th>Longitud</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (p of poblados(); track $index) {
+          <tr>
+            <td><input type="text" [(ngModel)]="poblados()[$index].nombre" /></td>
+            <td><input type="number" step="any" [(ngModel)]="poblados()[$index].lat" /></td>
+            <td><input type="number" step="any" [(ngModel)]="poblados()[$index].lon" /></td>
+            <td><p-button icon="pi pi-trash" severity="danger" [text]="true" (onClick)="quitar($index)" /></td>
+          </tr>
+        }
+        @if (poblados().length === 0) {
+          <tr>
+            <td colspan="4" class="vacio">Sin poblados. Agrega uno.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+    <div class="dialog-acciones">
+      <p-button label="+ Agregar poblado" [outlined]="true" (onClick)="agregar()" />
+      <div class="flex-1"></div>
+      <p-button label="Cancelar" [text]="true" (onClick)="cerrar()" />
+      <p-button label="Guardar" (onClick)="guardar()" />
+    </div>
+  </p-dialog>
+</div>
