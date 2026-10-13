@@ -15,4 +15,9 @@ export class StationService {
   porId(id: number): Observable<Station> {
     return this.api.get<Station>(`stations/${id}`);
   }
+
+  /** Actualiza la ficha configurable de una estación. */
+  update(id: number, body: Partial<Station>): Observable<Station> {
+    return this.api.put<Station>(`stations/${id}`, body);
+  }
 }

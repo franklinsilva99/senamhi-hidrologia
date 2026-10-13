@@ -73,6 +73,11 @@ export class AdminLayout implements OnInit {
       icon: 'pi pi-exclamation-triangle',
       url: '/avisos',
     },
+    {
+      label: 'Admin',
+      icon: 'pi pi-cog',
+      url: '/admin',
+    },
   ];
 
   get systemName(): string {

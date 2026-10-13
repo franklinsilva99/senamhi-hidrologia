@@ -13,4 +13,19 @@ export class ConfigRecordService {
   vigente(stationId: string, variable: Variable, fecha: string): Observable<ConfigRecord> {
     return this.api.get<ConfigRecord>('config-records/vigente', { stationId, variable, fecha });
   }
+
+  /** Lista de registros de configuración (opcionalmente filtrada). */
+  registros(stationId?: string, variable?: string): Observable<ConfigRecord[]> {
+    const params: Record<string, string> = {};
+    if (stationId) params['stationId'] = stationId;
+    if (variable) params['variable'] = variable;
+    return this.api.get<ConfigRecord[]>(
+      'config-records',
+      Object.keys(params).length ? params : undefined,
+    );
+  }
+
+  update(id: number, record: ConfigRecord): Observable<ConfigRecord> {
+    return this.api.put<ConfigRecord>(`config-records/${id}`, record);
+  }
 }

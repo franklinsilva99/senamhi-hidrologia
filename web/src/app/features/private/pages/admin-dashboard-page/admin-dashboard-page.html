@@ -1,0 +1,62 @@
+<div class="admin-dashboard">
+  <h1 class="titulo">Panel de Administración</h1>
+
+  <div class="metricas">
+    <p-card>
+      <div class="metrica"><span class="metrica-label">Estaciones</span><span class="metrica-valor">{{ totalEstaciones }}</span></div>
+    </p-card>
+    <p-card>
+      <div class="metrica"><span class="metrica-label">Avisos vigentes</span><span class="metrica-valor naranja">{{ avisosVigentes }}</span></div>
+    </p-card>
+    <p-card>
+      <div class="metrica"><span class="metrica-label">Estaciones con pronóstico</span><span class="metrica-valor azul">{{ estacionesConPronostico }}</span></div>
+    </p-card>
+    <p-card>
+      <div class="metrica"><span class="metrica-label">Total modelos ingresados</span><span class="metrica-valor">{{ totalModelos }}</span></div>
+    </p-card>
+  </div>
+
+  <div class="accesos">
+    <a routerLink="/admin/avisos" class="acceso">
+      <h2>Gestionar Avisos</h2>
+      <p>Crear, editar, habilitar/deshabilitar avisos hidrológicos.</p>
+    </a>
+    <a routerLink="/admin/pronostico" class="acceso">
+      <h2>Cargar Pronóstico</h2>
+      <p>Ingresar Modelo 1..4 por estación y fecha.</p>
+    </a>
+    <a routerLink="/admin/config" class="acceso">
+      <h2>Configuración General</h2>
+      <p>Umbrales, vigencia y ficha de estaciones.</p>
+    </a>
+    <a routerLink="/admin/centros-poblados" class="acceso">
+      <h2>Centros Poblados</h2>
+      <p>Catálogo de centros poblados afectados.</p>
+    </a>
+  </div>
+
+  <p-card header="Avisos recientes">
+    <p-table [value]="alerts()" [loading]="cargando()" [scrollable]="true" scrollHeight="420px">
+      <ng-template #header>
+        <tr>
+          <th>Nro</th>
+          <th>Estación</th>
+          <th>Título</th>
+          <th>Nivel</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-a>
+        <tr>
+          <td>{{ a.nro }}</td>
+          <td>{{ nombreEstacion(a.stationId) }}</td>
+          <td class="titulo-celda">{{ a.titulo }}</td>
+          <td><p-tag [value]="a.nivel" [style]="badgeStyle(a.nivel)" /></td>
+          <td>{{ a.vigente ? 'Vigente' : 'Histórico' }}</td>
+          <td><a [routerLink]="['/avisos', a.ca]">+Info</a></td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

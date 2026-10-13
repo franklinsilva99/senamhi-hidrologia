@@ -1,0 +1,75 @@
+<div class="admin-config">
+  <h1 class="titulo">Configuración de Estaciones</h1>
+  <p class="subtitulo">Tabla de umbrales/vigencia por variable y ficha por estación.</p>
+
+  <p-table [value]="records()" [loading]="cargando()" [scrollable]="true" scrollHeight="520px">
+    <ng-template #header>
+      <tr>
+        <th>DZ</th>
+        <th>Estación</th>
+        <th>Variable</th>
+        <th>Avenida (A/N/R)</th>
+        <th>Vigilancia (A/N/R)</th>
+        <th>Vigencia (h)</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-r>
+      <tr>
+        <td>{{ nombreDe(r.stationId)?.dz ?? '—' }}</td>
+        <td>{{ nombreDe(r.stationId)?.estacion ?? r.stationId }}</td>
+        <td>{{ r.variable }}</td>
+        <td>
+          @if (r.umbrales.avenida) {
+            {{ r.umbrales.avenida.amarilla }} / {{ r.umbrales.avenida.naranja }} / {{ r.umbrales.avenida.roja }}
+          } @else {
+            —
+          }
+        </td>
+        <td>
+          @if (r.umbrales.vigilancia) {
+            {{ r.umbrales.vigilancia.amarilla }} / {{ r.umbrales.vigilancia.naranja }} / {{ r.umbrales.vigilancia.roja }}
+          } @else {
+            —
+          }
+        </td>
+        <td>{{ r.tiempoVigenciaHrs.amarilla }} / {{ r.tiempoVigenciaHrs.naranja }} / {{ r.tiempoVigenciaHrs.roja }}</td>
+        <td>
+          <p-button label="Editar" size="small" [outlined]="true" (onClick)="abrirEdicion(r)" />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <p-dialog
+    header="Editar umbrales y vigencia"
+    [(visible)]="editando"
+    [modal]="true"
+    [style]="{ width: '520px' }"
+  >
+    <div class="dialog-grid">
+      <h3>Avenida ↑</h3>
+      <div class="fila">
+        <label>Amarilla <p-inputNumber [(ngModel)]="form().avAmarilla" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+        <label>Naranja <p-inputNumber [(ngModel)]="form().avNaranja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+        <label>Roja <p-inputNumber [(ngModel)]="form().avRoja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+      </div>
+      <h3>Vigilancia ↓</h3>
+      <div class="fila">
+        <label>Amarilla <p-inputNumber [(ngModel)]="form().vigAmarilla" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+        <label>Naranja <p-inputNumber [(ngModel)]="form().vigNaranja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+        <label>Roja <p-inputNumber [(ngModel)]="form().vigRoja" [minFractionDigits]="0" [maxFractionDigits]="2" /></label>
+      </div>
+      <h3>Vigencia (horas)</h3>
+      <div class="fila">
+        <label>Amarilla <p-inputNumber [(ngModel)]="form().vAmarilla" /></label>
+        <label>Naranja <p-inputNumber [(ngModel)]="form().vNaranja" /></label>
+        <label>Roja <p-inputNumber [(ngModel)]="form().vRoja" /></label>
+      </div>
+    </div>
+    <ng-template #footer>
+      <p-button label="Cancelar" [text]="true" (onClick)="editando.set(false)" />
+      <p-button label="Guardar" (onClick)="guardar()" />
+    </ng-template>
+  </p-dialog>
+</div>

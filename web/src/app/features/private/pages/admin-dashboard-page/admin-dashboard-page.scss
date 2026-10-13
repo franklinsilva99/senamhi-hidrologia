@@ -1,0 +1,77 @@
+.admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.titulo {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.metricas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.75rem;
+}
+
+.metrica {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.metrica-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted, #64748b);
+}
+
+.metrica-valor {
+  font-size: 1.75rem;
+  font-weight: 700;
+
+  &.naranja {
+    color: #fca326;
+  }
+  &.azul {
+    color: #00539b;
+  }
+}
+
+.accesos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem;
+}
+
+.acceso {
+  display: block;
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 8px;
+  padding: 1rem;
+  background: #fff;
+  text-decoration: none;
+  color: inherit;
+
+  h2 {
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #003366;
+  }
+
+  p {
+    margin: 0.25rem 0 0;
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #64748b);
+  }
+
+  &:hover {
+    border-color: #00539b;
+  }
+}
+
+.titulo-celda {
+  font-size: 0.8rem;
+}

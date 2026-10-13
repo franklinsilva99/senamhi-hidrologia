@@ -42,6 +42,46 @@ export const routes: Routes = [
           ),
         data: { title: 'Detalle de Aviso', subtitle: 'Aviso hidrológico' },
       },
+      {
+        path: 'admin',
+        loadComponent: () =>
+          import('./features/private/pages/admin-dashboard-page/admin-dashboard-page').then(
+            (m) => m.AdminDashboardPage,
+          ),
+        data: { title: 'Administración', subtitle: 'Panel de administración' },
+      },
+      {
+        path: 'admin/avisos',
+        loadComponent: () =>
+          import('./features/private/pages/admin-avisos-page/admin-avisos-page').then(
+            (m) => m.AdminAvisosPage,
+          ),
+        data: { title: 'Gestionar Avisos', subtitle: 'Detección y publicación de avisos' },
+      },
+      {
+        path: 'admin/config',
+        loadComponent: () =>
+          import('./features/private/pages/admin-config-page/admin-config-page').then(
+            (m) => m.AdminConfigPage,
+          ),
+        data: { title: 'Configuración General', subtitle: 'Umbrales y vigencia' },
+      },
+      {
+        path: 'admin/pronostico',
+        loadComponent: () =>
+          import('./features/private/pages/admin-pronostico-page/admin-pronostico-page').then(
+            (m) => m.AdminPronosticoPage,
+          ),
+        data: { title: 'Cargar Pronóstico', subtitle: 'Registro de modelos' },
+      },
+      {
+        path: 'admin/centros-poblados',
+        loadComponent: () =>
+          import(
+            './features/private/pages/admin-centros-poblados-page/admin-centros-poblados-page'
+          ).then((m) => m.AdminCentrosPobladosPage),
+        data: { title: 'Centros Poblados', subtitle: 'Catálogo de centros poblados' },
+      },
     ],
   },
   {

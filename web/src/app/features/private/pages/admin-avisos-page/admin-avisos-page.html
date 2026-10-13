@@ -1,0 +1,47 @@
+<div class="admin-avisos">
+  <div class="barra">
+    <h1 class="titulo">Gestión de Avisos Hidrológicos</h1>
+    <p-button label="↻ Actualizar detección" (onClick)="actualizarDeteccion()" />
+  </div>
+
+  @if (mensaje()) {
+    <div class="mensaje">✓ {{ mensaje() }}</div>
+  }
+
+  <p-table [value]="alerts()" [loading]="cargando()" [scrollable]="true" scrollHeight="520px">
+    <ng-template #header>
+      <tr>
+        <th>DZ</th>
+        <th>Estación</th>
+        <th>Aviso</th>
+        <th>Nro</th>
+        <th>Inicio</th>
+        <th>Fin</th>
+        <th>Nivel</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-a>
+      <tr [class.vigente]="a.vigente">
+        <td>{{ dz(a.stationId) }}</td>
+        <td>{{ nombre(a.stationId) }}</td>
+        <td class="titulo-celda">{{ a.titulo }}</td>
+        <td>{{ a.nro }}</td>
+        <td>{{ a.inicio }}</td>
+        <td>{{ a.fin }}</td>
+        <td><p-tag [value]="a.nivel" [style]="badgeStyle(a.nivel)" /></td>
+        <td>{{ a.vigente ? 'Activo' : 'Inactivo' }}</td>
+        <td class="acciones">
+          <a [routerLink]="['/avisos', a.ca]" title="Más información">+Info</a>
+          <p-button
+            [label]="a.vigente ? 'Deshabilitar' : 'Habilitar'"
+            size="small"
+            [outlined]="true"
+            (onClick)="toggleVigente(a)"
+          />
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>
