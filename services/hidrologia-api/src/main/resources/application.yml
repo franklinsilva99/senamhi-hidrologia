@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: hidrologia-backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/hidrologia
+    username: hidrologia
+    password: hidrologia
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  jackson:
+    default-property-inclusion: non_null
+
+server:
+  port: 8080
+
+logging:
+  level:
+    org.hibernate.SQL: warn
