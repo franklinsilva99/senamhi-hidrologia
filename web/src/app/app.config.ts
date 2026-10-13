@@ -22,7 +22,7 @@ import { serverUnavailableInterceptor } from './core/interceptors/server-unavail
 
 registerLocaleData(localeEsPe, 'es-PE');
 
-const Senamhi = definePreset(Aura, {
+const Hidrologia = definePreset(Aura, {
   semantic: {
     primary: {
       '50': '#e6eeff',
@@ -103,7 +103,7 @@ export const appConfig: ApplicationConfig = {
       translation: es,
       ripple: false,
       theme: {
-        preset: Senamhi,
+        preset: Hidrologia,
         options: {
           darkModeSelector: '.sh-dark',
         },

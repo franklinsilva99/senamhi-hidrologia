@@ -455,15 +455,15 @@ $border-color: #dee2e6;
 }
 
 .server-alert-retrying {
-  background: var(--color-d-bg);
-  border-color: var(--color-d-border);
-  color: var(--color-d-text);
+  background: var(--color-warning-bg);
+  border-color: var(--color-warning-border);
+  color: var(--color-warning-text);
 }
 
 .server-alert-down {
-  background: var(--color-m-bg);
-  border-color: var(--color-m-border);
-  color: var(--color-m-text);
+  background: var(--color-danger-bg);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger-text);
 }
 
 // ================================

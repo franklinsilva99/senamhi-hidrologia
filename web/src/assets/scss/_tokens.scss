@@ -1,7 +1,6 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// SENAMHI QC — Design Tokens
+// Design Tokens — Sistema de Monitoreo Hidrológico
 // Fuente de verdad para todos los valores del design system.
-// Todos los componentes del módulo QC deben referenciar var(--*) de este archivo.
 // ─────────────────────────────────────────────────────────────────────────────
 
 :root {
@@ -85,48 +84,22 @@
   --color-primary-700: #1d4ed8;
   --color-primary-800: #1e40af;
 
-  // ── Banderas QC ───────────────────────────────────────────────────────────
+  // ── Advertencia (ámbar) ────────────────────────────────────────────────────
+  --color-warning-bg:     #fffbeb;
+  --color-warning-subtle: #fef3c7;
+  --color-warning-border: #fcd34d;
+  --color-warning-text:   #92400e;
+  --color-warning-active: #d97706;
+  --color-warning-500:    #f59e0b;
 
-  // Conforme (C) — verde
-  --color-c-bg:     #f0fdf4;
-  --color-c-subtle: #dcfce7;
-  --color-c-border: #86efac;
-  --color-c-text:   #166534;
-  --color-c-active: #16a34a;
-  --color-c-dark:   #14532d;
-
-  // Dudoso (D) — ámbar
-  --color-d-bg:     #fffbeb;
-  --color-d-subtle: #fef3c7;
-  --color-d-border: #fcd34d;
-  --color-d-text:   #92400e;
-  --color-d-active: #d97706;
-  --color-d-500:    #f59e0b;
-
-  // Malo (M) — rojo
-  --color-m-bg:      #fef2f2;
-  --color-m-subtle:  #fee2e2;
-  --color-m-lighter: #fecaca;
-  --color-m-border:  #fca5a5;
-  --color-m-text:    #991b1b;
-  --color-m-active:  #dc2626;
-  --color-m-500:     #ef4444;
-
-  // No Dato (ND) — gris
-  --color-nd-bg:     #f8fafc;
-  --color-nd-border: #cbd5e1;
-  --color-nd-text:   #475569;
-
-  // Sin Control (SC) — violeta
-  --color-sc-bg:     #f5f3ff;
-  --color-sc-border: #c4b5fd;
-  --color-sc-text:   #5b21b6;
-  --color-sc-active: #7c3aed;
-
-  // Pendiente (edición no guardada) — naranja
-  --color-pending-bg:     #fff7ed;
-  --color-pending-border: #fed7aa;
-  --color-pending-text:   #c2410c;
+  // ── Peligro (rojo) ─────────────────────────────────────────────────────────
+  --color-danger-bg:      #fef2f2;
+  --color-danger-subtle:  #fee2e2;
+  --color-danger-lighter: #fecaca;
+  --color-danger-border:  #fca5a5;
+  --color-danger-text:    #991b1b;
+  --color-danger-active:  #dc2626;
+  --color-danger-500:     #ef4444;
 
   // ── Estados UI ─────────────────────────────────────────────────────────────
 
@@ -135,32 +108,11 @@
   --color-saved-border: #86efac;
   --color-saved-text:   #166534;
 
-  // Filas con estado en la tabla QC manual
-  --color-row-dirty:      #fffbeb;
-  --color-row-overridden: #f0fdf4;
-  --color-row-selected:   #eff6ff;
-
   // Positivo / Negativo
   --color-positive: #16a34a;
   --color-negative: #dc2626;
 
-  // ── Tipos de control (badges en Criterios) ─────────────────────────────────
-  // RV — Verificación de Rangos (azul)
-  --color-type-rv-bg:     #eff6ff;
-  --color-type-rv-border: #93c5fd;
-  --color-type-rv-text:   #1e40af;
-
-  // TC — Consistencia Temporal (violeta)
-  --color-type-tc-bg:     #f5f3ff;
-  --color-type-tc-border: #c4b5fd;
-  --color-type-tc-text:   #5b21b6;
-
-  // IC — Consistencia Interna (esmeralda)
-  --color-type-ic-bg:     #ecfdf5;
-  --color-type-ic-border: #6ee7b7;
-  --color-type-ic-text:   #065f46;
-
-  // ── Badges misceláneos ─────────────────────────────────────────────────────
+  // ── Badges ─────────────────────────────────────────────────────────────────
   --color-badge-orange-bg:     #fff7ed;
   --color-badge-orange-border: #fed7aa;
   --color-badge-orange-text:   #c2410c;
@@ -172,25 +124,4 @@
   // Violeta adicional
   --color-violet-300: #c4b5fd;
   --color-violet-600: #7c3aed;
-
-  // Calidad del Aire
-  --color-aq-500: #0ea5e9;
-
-  // ── Auditoría / log / bulk ─────────────────────────────────────────────────
-  --color-audit-bg:   #f8fafc;
-  --color-audit-text: #475569;
-
-  --color-bulk-bg:     #eff6ff;
-  --color-bulk-border: #bfdbfe;
-  --color-bulk-text:   #1e40af;
-
-  --color-callout-bg:     #eff6ff;
-  --color-callout-border: #bfdbfe;
-
-  // Log de reprocesamiento
-  --color-log-bg:      #0f172a;
-  --color-log-msg:     #94a3b8;
-  --color-log-success: #4ade80;
-  --color-log-warning: #fbbf24;
-  --color-log-error:   #f87171;
 }

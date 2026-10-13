@@ -11,8 +11,8 @@ import { ToolService } from './tool.service';
 
 /**
  * Filas por página al recorrer un listado completo. El Backend acepta páginas
- * grandes y responde igual de rápido; con 200 una bandeja de tres días pedía
- * ocho páginas por estación (17/09/2026).
+ * grandes y responde igual de rápido; con 1.000 la mayoría de los listados
+ * quedan en una sola petición.
  */
 const DEFAULT_PAGE_SIZE = 1000;
 

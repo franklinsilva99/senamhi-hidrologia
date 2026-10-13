@@ -82,22 +82,3 @@ fieldset.p-fieldset {
   }
 }
 
-// ── Tooltip de la matriz de QC 2 ──────────────────────────────────────────
-//
-// El contenido son líneas rotuladas separadas por saltos, no una frase corrida:
-// eran cinco datos distintos en un solo renglón y había que leerlo entero para
-// encontrar cualquiera de ellos. PrimeNG cuelga el tooltip del body, fuera del
-// componente, así que el estilo tiene que ser global.
-// El ancho se fija por el token de PrimeNG: `.p-tooltip` lo lee de
-// `--p-tooltip-max-width` (12,5 rem por defecto), y una regla `max-width` en la
-// clase propia queda pisada. Con 180 px, cada línea rotulada se partía en tres.
-.qc2-tip {
-  --p-tooltip-max-width: 26rem;
-
-  .p-tooltip-text {
-    white-space: pre-line;
-    line-height: 1.5;
-    font-size: 0.78rem;
-    text-align: left;
-  }
-}

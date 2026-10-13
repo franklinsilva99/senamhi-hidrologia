@@ -12,14 +12,14 @@ describe('customImageLoader', () => {
   };
 
   it('pide las imágenes bajo la ruta base de la página', () => {
-    conBase('/qc-aire/');
-    expect(customImageLoader({ src: 'images/logo.png' })).toBe('/qc-aire/assets/images/logo.png');
-    expect(customImageLoader({ src: '/images/logo.png' })).toBe('/qc-aire/assets/images/logo.png');
+    conBase('/hidrologia/');
+    expect(customImageLoader({ src: 'images/logo.png' })).toBe('/hidrologia/assets/images/logo.png');
+    expect(customImageLoader({ src: '/images/logo.png' })).toBe('/hidrologia/assets/images/logo.png');
   });
 
   it('agrega la barra final si la base no la trae', () => {
-    conBase('/qc-aire');
-    expect(customImageLoader({ src: 'logo.svg' })).toBe('/qc-aire/assets/logo.svg');
+    conBase('/hidrologia');
+    expect(customImageLoader({ src: 'logo.svg' })).toBe('/hidrologia/assets/logo.svg');
   });
 
   it('sin <base> en la página usa la ruta de la compilación', () => {

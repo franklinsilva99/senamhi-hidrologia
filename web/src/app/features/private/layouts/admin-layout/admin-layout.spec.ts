@@ -23,11 +23,11 @@ describe('AdminLayout', () => {
   let eventosRouter: Subject<unknown>;
   let hoja: RutaFalsa;
 
-  function crear(url = '/monitoreo/pruebas-qc'): void {
+  function crear(url = '/'): void {
     eventosRouter = new Subject<unknown>();
     hoja = {
       firstChild: null,
-      snapshot: { data: { title: 'Pruebas QC', subtitle: 'Catálogo de pruebas' } },
+      snapshot: { data: { title: 'Inicio', subtitle: 'Resumen del sistema' } },
     };
     const raiz: RutaFalsa = {
       firstChild: { firstChild: hoja, snapshot: { data: {} } },
@@ -58,8 +58,8 @@ describe('AdminLayout', () => {
     it('lee título y subtítulo de la hoja activa del árbol de rutas', () => {
       componente.ngOnInit();
 
-      expect(componente.currentTitle()).toBe('Pruebas QC');
-      expect(componente.currentSubtitle()).toBe('Catálogo de pruebas');
+      expect(componente.currentTitle()).toBe('Inicio');
+      expect(componente.currentSubtitle()).toBe('Resumen del sistema');
     });
 
     it('queda vacío cuando la ruta no declara data', () => {
@@ -73,66 +73,20 @@ describe('AdminLayout', () => {
     it('se actualiza en cada NavigationEnd', () => {
       componente.ngOnInit();
 
-      hoja.snapshot.data = { title: 'Reprocesamiento', subtitle: 'Cargas históricas' };
-      eventosRouter.next(
-        new NavigationEnd(2, '/monitoreo/reprocesamiento', '/monitoreo/reprocesamiento'),
-      );
+      hoja.snapshot.data = { title: 'Monitoreo', subtitle: 'Estado de estaciones' };
+      eventosRouter.next(new NavigationEnd(2, '/monitoreo', '/monitoreo'));
 
-      expect(componente.currentTitle()).toBe('Reprocesamiento');
-      expect(componente.currentSubtitle()).toBe('Cargas históricas');
+      expect(componente.currentTitle()).toBe('Monitoreo');
+      expect(componente.currentSubtitle()).toBe('Estado de estaciones');
     });
 
     it('ignora los eventos de navegación que no son NavigationEnd', () => {
       componente.ngOnInit();
 
       hoja.snapshot.data = { title: 'Otra' };
-      eventosRouter.next(new NavigationStart(2, '/monitoreo/reprocesamiento'));
+      eventosRouter.next(new NavigationStart(2, '/monitoreo'));
 
-      expect(componente.currentTitle()).toBe('Pruebas QC');
-    });
-  });
-
-  describe('menú lateral', () => {
-    it('expande solo el grupo cuyo submenú contiene la URL actual', () => {
-      componente.ngOnInit();
-
-      const porGrupo = Object.fromEntries(componente.menuItems.map((i) => [i.label, i.expanded]));
-      expect(porGrupo['Catálogos']).toBe(true);
-      expect(porGrupo['Configuración']).toBe(false);
-      expect(porGrupo['Procesamiento']).toBe(false);
-      expect(porGrupo['Revisión']).toBe(false);
-    });
-
-    it('un ítem sin url no expande su grupo', () => {
-      const grupo = componente.menuItems.find((i) => i.label === 'Revisión')!;
-      grupo.items = [{ label: 'Sin destino', icon: 'pi pi-ban' }];
-
-      componente.ngOnInit();
-
-      expect(grupo.expanded).toBe(false);
-    });
-
-    it('todos los grupos son estáticos y sus ítems apuntan a /monitoreo', () => {
-      for (const grupo of componente.menuItems) {
-        expect(grupo.static).toBe(true);
-        for (const item of grupo.items ?? []) {
-          expect(item.url).toMatch(/^\/monitoreo\//);
-        }
-      }
-    });
-
-    it('toggleSubmenu abre en acordeón: expandir uno colapsa el resto', () => {
-      const [primero, segundo] = componente.menuItems;
-
-      componente.toggleSubmenu(primero);
-      expect(primero.expanded).toBe(true);
-
-      componente.toggleSubmenu(segundo);
-      expect(segundo.expanded).toBe(true);
-      expect(primero.expanded).toBe(false);
-
-      componente.toggleSubmenu(segundo);
-      expect(segundo.expanded).toBe(false);
+      expect(componente.currentTitle()).toBe('Inicio');
     });
   });
 
