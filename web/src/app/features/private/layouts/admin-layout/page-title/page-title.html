@@ -1,0 +1,18 @@
+<section class="page-title">
+  <p-card>
+    @if (!hiddenBreadcrumb) {
+      <p-breadcrumb
+        [model]="items"
+        [home]="home"
+      />
+    }
+    <h1>
+      {{ title }}
+    </h1>
+    @if (subtitle) {
+      <h2>
+        {{ subtitle }}
+      </h2>
+    }
+  </p-card>
+</section>

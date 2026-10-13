@@ -1,0 +1,5 @@
+@use 'variables';
+
+.orange-text {
+  color: variables.$secondary-color;
+}

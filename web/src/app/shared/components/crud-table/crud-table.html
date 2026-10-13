@@ -1,0 +1,166 @@
+<div class="sh-space-vertical">
+  <div>
+    <strong [style.margin-right]="'0.5rem'">Total:</strong>
+    <p-tag severity="info">{{ data.length }}</p-tag>
+    registros.
+  </div>
+  <p-table
+    #table
+    [sortField]="sortField"
+    [sortOrder]="sortOrder"
+    [globalFilterFields]="globalFilterFields"
+    [paginator]="true"
+    [rowsPerPageOptions]="rowsPerPageOptions"
+    [rows]="rows"
+    [showGridlines]="showGridlines"
+    [stripedRows]="stripedRows"
+    [value]="data"
+    dataKey="id"
+    [paginatorDropdownAppendTo]="'body'"
+    [size]="size"
+  >
+    @if (globalFilterFields.length > 0) {
+      <ng-template pTemplate="caption">
+        <div class="table-caption">
+          <p-iconfield iconPosition="left">
+            <p-inputicon>
+              <i class="pi pi-search"></i>
+            </p-inputicon>
+            <input
+              [fluid]="true"
+              (input)="onSearch($event, table)"
+              pInputText
+              placeholder="Buscar"
+              aria-label="Buscar"
+              type="text"
+            />
+          </p-iconfield>
+        </div>
+      </ng-template>
+    }
+
+    <ng-template pTemplate="header">
+      <tr>
+        @for (col of columns; track col.field) {
+          <th [style.width]="col.width"
+              [pSortableColumn]="col.sortable ? col.field : undefined"
+              scope="col">
+            {{ col.header }}
+            @if (col.sortable) {
+              <p-sortIcon [field]="col.field"></p-sortIcon>
+            }
+          </th>
+        }
+
+        @if (hasActions) {
+          <th [style.width]="'10rem'" scope="col">Acciones</th>
+        }
+      </tr>
+
+      @if (hasColumnFilters) {
+        <tr class="filter-row">
+          @for (col of columns; track col.field) {
+            <th scope="col">
+              @if (isColumnFilterable(col)) {
+                <p-columnFilter
+                  [field]="col.field"
+                  type="text"
+                  matchMode="contains"
+                  [showMenu]="false"
+                  [showClearButton]="false"
+                  placeholder="Filtrar"
+                ></p-columnFilter>
+              }
+            </th>
+          }
+
+          @if (hasActions) {
+            <th scope="col"></th>
+          }
+        </tr>
+      }
+    </ng-template>
+
+    <ng-template pTemplate="body"
+                 let-row>
+      <tr>
+        @for (col of columns; track col.field) {
+          <td>
+            @switch (col.type) {
+              @case ('text') {
+                <span>{{ row[col.field] }}</span>
+              }
+              @case ('tag') {
+                <p-tag [value]="row[col.field]"
+                       [ngClass]="col.tagStyle"></p-tag>
+              }
+              @case ('date') {
+                <span>{{ row[col.field] | date: 'dd/MM/yyyy' }}</span>
+              }
+              @case ('dateTimeMedium') {
+                <span>{{ row[col.field] | date: 'dd/MM/yyyy HH:mm' }}</span>
+              }
+              @case ('dateTime') {
+                <span>{{ row[col.field] | date: 'dd/MM/yyyy HH:mm:ss' }}</span>
+              }
+              @case ('boolean') {
+                <p-tag
+                  [value]="row[col.field] ? 'Sí' : 'No'"
+                  [severity]="row[col.field] ? 'success' : 'danger'"
+                ></p-tag>
+              }
+              @case ('custom') {
+                @if (col.templateName) {
+                  <ng-container
+                    *ngTemplateOutlet="
+                    templateMap.get(col.templateName);
+                    context: { $implicit: row[col.field], row: row }
+                  "
+                  ></ng-container>
+                }
+              }
+              @default {
+                <span>{{ row[col.field] }}</span>
+              }
+            }
+          </td>
+        }
+
+        @if (hasActions) {
+          <td [style.width]="'10rem'">
+            <div class="table-actions">
+              @if (actionsTemplate) {
+                <ng-container
+                  *ngTemplateOutlet="actionsTemplate; context: { $implicit: row }"
+                ></ng-container>
+              }
+
+              @if (isEditable) {
+                <p-button
+                  (click)="onEdit(row.id)"
+                  icon="pi pi-pencil"
+                  size="small"
+                  pTooltip="Editar"
+                  tooltipPosition="left"
+                >
+                </p-button>
+              }
+
+              @if (isDeletable && canDelete(row)) {
+                <p-button
+                  (click)="onDelete(row.id)"
+                  icon="pi pi-trash"
+                  severity="danger"
+                  size="small"
+                  pTooltip="Eliminar"
+                  tooltipPosition="left"
+                >
+                </p-button>
+              }
+            </div>
+          </td>
+        }
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

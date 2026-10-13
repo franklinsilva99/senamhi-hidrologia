@@ -1,0 +1,52 @@
+<div class="sh-space-vertical">
+  @if (message) {
+    <p
+      [style]="{
+        margin: '0',
+        whiteSpace: 'pre-wrap',
+        wordBreak: 'break-word',
+        overflowWrap: 'anywhere',
+      }"
+    >
+      {{ message }}
+    </p>
+  }
+  <p-divider></p-divider>
+  @if (code) {
+    <p style="margin: 0">
+      <small>
+        <i> <b>Código de excepción:</b> {{ code }}. </i>
+      </small>
+    </p>
+  }
+  @if (trace) {
+    <p-fieldset
+      legend="Detalles técnicos:"
+      [toggleable]="true"
+      [collapsed]="true"
+      [style]="{ boxSizing: 'border-box', width: '100%', maxWidth: '100%' }"
+    >
+      <pre
+        [style]="{
+          whiteSpace: 'pre-wrap',
+          wordBreak: 'break-word',
+          overflowWrap: 'anywhere',
+          maxWidth: '100%',
+          margin: '0',
+        }"
+      >
+      {{ trace }}
+    </pre
+      >
+    </p-fieldset>
+  }
+  <div [style]="{ display: 'flex', justifyContent: 'flex-end', width: '100%' }">
+    <p-button
+      (click)="onClose()"
+      icon="pi pi-times"
+      label="Cerrar"
+      severity="contrast"
+      type="button"
+    ></p-button>
+  </div>
+</div>

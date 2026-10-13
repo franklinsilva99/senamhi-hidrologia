@@ -1,0 +1,88 @@
+<p-table
+  #table
+  [globalFilterFields]="globalFilterFields"
+  [paginator]="true"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [rows]="rows"
+  [showGridlines]="showGridlines"
+  [stripedRows]="stripedRows"
+  [value]="data"
+  dataKey="id"
+  [size]="size"
+>
+  <!-- Cabecera personalizada con búsqueda -->
+  @if (globalFilterFields.length > 0) {
+    <ng-template pTemplate="caption">
+      <div class="table-caption">
+        <p-iconfield iconPosition="left">
+          <p-inputicon>
+            <i class="pi pi-search"></i>
+          </p-inputicon>
+          <input
+            [fluid]="true"
+            (input)="onSearch($event, table)"
+            aria-label="Buscar en la tabla"
+            pInputText
+            placeholder="Buscar"
+            type="text"
+          />
+        </p-iconfield>
+      </div>
+    </ng-template>
+  }
+
+  <!-- Encabezados dinámicos -->
+  <ng-template pTemplate="header">
+    <tr>
+      @for (col of columns; track col.field) {
+        <th
+          [style.width]="col.width"
+          [pSortableColumn]="col.sortable ? col.field : undefined"
+          scope="col"
+        >
+          {{ col.header }}
+          @if (col.sortable) {
+            <p-sortIcon [field]="col.field"></p-sortIcon>
+          }
+        </th>
+      }
+    </tr>
+  </ng-template>
+
+  <!-- Cuerpo dinámico -->
+  <ng-template pTemplate="body" let-row>
+    <tr>
+      @for (col of columns; track col.field) {
+        <td>
+          @switch (col.type) {
+            @case ('text') {
+              <span>{{ row[col.field] }}</span>
+            }
+            @case ('tag') {
+              <p-tag [value]="row[col.field]" [ngClass]="col.tagStyle"></p-tag>
+            }
+            @case ('date') {
+              <span>{{ row[col.field] | date: 'dd/MM/yyyy' }}</span>
+            }
+            @case ('boolean') {
+              <p-tag
+                [value]="row[col.field] ? 'Sí' : 'No'"
+                [severity]="row[col.field] ? 'success' : 'danger'"
+              ></p-tag>
+            }
+            @case ('custom') {
+              @if (col.templateName) {
+                <ng-container
+                  *ngTemplateOutlet="templateMap.get(col.templateName); context: { $implicit: row }"
+                ></ng-container>
+              }
+            }
+            @default {
+              <span>{{ row[col.field] }}</span>
+            }
+          }
+        </td>
+      }
+    </tr>
+  </ng-template>
+</p-table>

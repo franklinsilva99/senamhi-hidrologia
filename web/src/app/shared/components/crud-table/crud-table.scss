@@ -1,0 +1,24 @@
+.table-actions {
+  gap: 0.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.table-caption {
+  padding: 0.5rem;
+}
+
+// Fila de filtros por columna: inputs a ancho completo y padding compacto.
+.filter-row {
+  th {
+    padding: 0.35rem 0.5rem;
+  }
+
+  ::ng-deep .p-columnfilter {
+    width: 100%;
+
+    input {
+      width: 100%;
+    }
+  }
+}

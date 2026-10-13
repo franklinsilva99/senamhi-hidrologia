@@ -1,0 +1,19 @@
+$primary-color: var(--p-primary-500);
+$secondary-color: var(--p-secondary-500);
+
+$sidebar-color: $primary-color;
+
+$breakpoint-mobile: 768px;
+
+$principal-font:
+  'Inter',
+  'Roboto',
+  system-ui,
+  -apple-system,
+  sans-serif;
+$hero-font:
+  'Plus Jakarta Sans',
+  'Roboto',
+  system-ui,
+  -apple-system,
+  sans-serif;

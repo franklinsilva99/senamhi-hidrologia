@@ -1,0 +1,196 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// SENAMHI QC — Design Tokens
+// Fuente de verdad para todos los valores del design system.
+// Todos los componentes del módulo QC deben referenciar var(--*) de este archivo.
+// ─────────────────────────────────────────────────────────────────────────────
+
+:root {
+
+  // ── Espaciado ──────────────────────────────────────────────────────────────
+  --sp-1: 0.25rem;   //  4px
+  --sp-2: 0.5rem;    //  8px
+  --sp-3: 0.75rem;   // 12px
+  --sp-4: 1rem;      // 16px
+  --sp-5: 1.25rem;   // 20px
+  --sp-6: 1.5rem;    // 24px
+  --sp-7: 1.75rem;   // 28px
+  --sp-8: 2rem;      // 32px
+
+  // ── Tipografía — tamaños ───────────────────────────────────────────────────
+  --text-2xs: 0.68rem;   // 10.9px
+  --text-xs:  0.75rem;   // 12px
+  --text-sm:  0.8125rem; // 13px
+  --text-md:  0.875rem;  // 14px
+  --text-base:0.9375rem; // 15px
+  --text-lg:  1rem;      // 16px
+  --text-xl:  1.125rem;  // 18px
+  --text-2xl: 1.375rem;  // 22px
+
+  // ── Tipografía — pesos ─────────────────────────────────────────────────────
+  --fw-normal:    400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+  --fw-extrabold: 800;
+
+  // ── Radios ─────────────────────────────────────────────────────────────────
+  --radius-xs:   4px;
+  --radius-sm:   6px;
+  --radius-md:   8px;
+  --radius-lg:   10px;
+  --radius-xl:   14px;
+  --radius-2xl:  20px;
+  --radius-badge:4px;
+  --radius-chip: 20px;
+  --radius-pill: 999px;
+
+  // ── Sombras ────────────────────────────────────────────────────────────────
+  --shadow-card:    0 1px 3px 0 rgb(0 0 0 / .08), 0 1px 2px -1px rgb(0 0 0 / .06);
+  --shadow-card-sm: 0 1px 2px 0 rgb(0 0 0 / .06);
+  --shadow-focus:   0 0 0 3px rgb(59 130 246 / .3);
+  --shadow-focus-sm:0 0 0 2px rgb(59 130 246 / .25);
+
+  // ── Colores de superficie ──────────────────────────────────────────────────
+  --color-bg-page:     #f8fafc;
+  --color-bg-card:     #ffffff;
+  --color-bg-subtle:   #f1f5f9;
+  --color-bg-table-hd: #f8fafc;
+  --color-bg-toolbar:  #f8fafc;
+
+  // ── Colores de borde ───────────────────────────────────────────────────────
+  --color-border:        #e2e8f0;
+  --color-border-subtle: #f1f5f9;
+  --color-border-input:  #cbd5e1;
+  --color-border-row:    #e2e8f0;
+  --color-border-table:  #e2e8f0;
+
+  // ── Colores de texto ───────────────────────────────────────────────────────
+  --color-text-heading:  #0f172a;
+  --color-text-strong:   #1e293b;
+  --color-text-body:     #334155;
+  --color-text-muted:    #64748b;
+  --color-text-subtle:   #94a3b8;
+  --color-text-table-hd: #475569;
+  --color-text-unit:     #94a3b8;
+  --color-placeholder:   #94a3b8;
+
+  // ── Primario (azul SENAMHI) ────────────────────────────────────────────────
+  --color-primary-50:  #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-200: #bfdbfe;
+  --color-primary-300: #93c5fd;
+  --color-primary-400: #60a5fa;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+  --color-primary-800: #1e40af;
+
+  // ── Banderas QC ───────────────────────────────────────────────────────────
+
+  // Conforme (C) — verde
+  --color-c-bg:     #f0fdf4;
+  --color-c-subtle: #dcfce7;
+  --color-c-border: #86efac;
+  --color-c-text:   #166534;
+  --color-c-active: #16a34a;
+  --color-c-dark:   #14532d;
+
+  // Dudoso (D) — ámbar
+  --color-d-bg:     #fffbeb;
+  --color-d-subtle: #fef3c7;
+  --color-d-border: #fcd34d;
+  --color-d-text:   #92400e;
+  --color-d-active: #d97706;
+  --color-d-500:    #f59e0b;
+
+  // Malo (M) — rojo
+  --color-m-bg:      #fef2f2;
+  --color-m-subtle:  #fee2e2;
+  --color-m-lighter: #fecaca;
+  --color-m-border:  #fca5a5;
+  --color-m-text:    #991b1b;
+  --color-m-active:  #dc2626;
+  --color-m-500:     #ef4444;
+
+  // No Dato (ND) — gris
+  --color-nd-bg:     #f8fafc;
+  --color-nd-border: #cbd5e1;
+  --color-nd-text:   #475569;
+
+  // Sin Control (SC) — violeta
+  --color-sc-bg:     #f5f3ff;
+  --color-sc-border: #c4b5fd;
+  --color-sc-text:   #5b21b6;
+  --color-sc-active: #7c3aed;
+
+  // Pendiente (edición no guardada) — naranja
+  --color-pending-bg:     #fff7ed;
+  --color-pending-border: #fed7aa;
+  --color-pending-text:   #c2410c;
+
+  // ── Estados UI ─────────────────────────────────────────────────────────────
+
+  // Guardado / éxito
+  --color-saved-bg:     #f0fdf4;
+  --color-saved-border: #86efac;
+  --color-saved-text:   #166534;
+
+  // Filas con estado en la tabla QC manual
+  --color-row-dirty:      #fffbeb;
+  --color-row-overridden: #f0fdf4;
+  --color-row-selected:   #eff6ff;
+
+  // Positivo / Negativo
+  --color-positive: #16a34a;
+  --color-negative: #dc2626;
+
+  // ── Tipos de control (badges en Criterios) ─────────────────────────────────
+  // RV — Verificación de Rangos (azul)
+  --color-type-rv-bg:     #eff6ff;
+  --color-type-rv-border: #93c5fd;
+  --color-type-rv-text:   #1e40af;
+
+  // TC — Consistencia Temporal (violeta)
+  --color-type-tc-bg:     #f5f3ff;
+  --color-type-tc-border: #c4b5fd;
+  --color-type-tc-text:   #5b21b6;
+
+  // IC — Consistencia Interna (esmeralda)
+  --color-type-ic-bg:     #ecfdf5;
+  --color-type-ic-border: #6ee7b7;
+  --color-type-ic-text:   #065f46;
+
+  // ── Badges misceláneos ─────────────────────────────────────────────────────
+  --color-badge-orange-bg:     #fff7ed;
+  --color-badge-orange-border: #fed7aa;
+  --color-badge-orange-text:   #c2410c;
+
+  --color-badge-purple-bg:     #f5f3ff;
+  --color-badge-purple-border: #c4b5fd;
+  --color-badge-purple-text:   #5b21b6;
+
+  // Violeta adicional
+  --color-violet-300: #c4b5fd;
+  --color-violet-600: #7c3aed;
+
+  // Calidad del Aire
+  --color-aq-500: #0ea5e9;
+
+  // ── Auditoría / log / bulk ─────────────────────────────────────────────────
+  --color-audit-bg:   #f8fafc;
+  --color-audit-text: #475569;
+
+  --color-bulk-bg:     #eff6ff;
+  --color-bulk-border: #bfdbfe;
+  --color-bulk-text:   #1e40af;
+
+  --color-callout-bg:     #eff6ff;
+  --color-callout-border: #bfdbfe;
+
+  // Log de reprocesamiento
+  --color-log-bg:      #0f172a;
+  --color-log-msg:     #94a3b8;
+  --color-log-success: #4ade80;
+  --color-log-warning: #fbbf24;
+  --color-log-error:   #f87171;
+}

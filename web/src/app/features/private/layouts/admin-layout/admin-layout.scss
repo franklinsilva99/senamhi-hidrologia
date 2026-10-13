@@ -1,0 +1,506 @@
+@use '../../../../../assets/scss/variables';
+
+// ================================
+// VARIABLES
+// ================================
+
+$header-height: 4.5rem;
+$sidebar-width: 20rem;
+
+// Colores principales
+$primary-color: variables.$primary-color;
+$primary-color-light: var(--p-primary-200);
+$primary-color-dark: var(--p-primary-700);
+
+$secondary-color: variables.$secondary-color;
+
+$bg-primary: #ffffff;
+$bg-secondary: #f8f9fa;
+$text-primary: #495057;
+$text-secondary: #6c757d;
+$border-color: #dee2e6;
+
+// ================================
+// MIXINS
+// ================================
+
+@mixin transition($properties: all, $duration: 0.3s, $timing: ease) {
+  transition: $properties $duration $timing;
+}
+
+@mixin button-reset {
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+@mixin card-shadow {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// ================================
+// LAYOUT GENERAL
+// ================================
+
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  color: $text-primary;
+  background-color: whitesmoke;
+
+  :host-context(.sh-dark) & {
+    background-color: var(--p-content-background);
+    color: #ffffff;
+  }
+}
+
+:host-context(.sh-dark) {
+  .header,
+  .footer {
+    background: var(--p-content-background);
+    border-color: var(--p-content-border-color);
+    color: #ffffff;
+  }
+
+  .logo {
+    color: #ffffff;
+  }
+
+  .sidebar {
+    background-color: #000;
+  }
+
+  .menu-toggle,
+  .theme-toggle-btn {
+    color: rgba(255, 255, 255, 0.8) !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.1) !important;
+      color: #ffffff !important;
+    }
+  }
+
+  .footer {
+    color: rgba(255, 255, 255, 0.6);
+  }
+}
+
+// ================================
+// HEADER
+// ================================
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: $header-height;
+  background: $bg-primary;
+  border-bottom: 1px solid $border-color;
+  font-family: variables.$hero-font;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  z-index: 900;
+  @include card-shadow;
+
+  &-left,
+  &-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
+  &-right {
+    margin-left: auto;
+  }
+
+  &-title {
+    flex: 1;
+    min-width: 0;
+    padding: 0 var(--sp-5);
+    line-height: 1.15;
+    overflow: hidden;
+
+    h1 {
+      margin: 0;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: $primary-color;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    p {
+      margin: 0.1rem 0 0;
+      font-size: 0.8rem;
+      color: $text-secondary;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: variables.$breakpoint-mobile) {
+      // En móvil, donde el system name ya se oculta, mantenemos solo el h1
+      padding: 0 var(--sp-3);
+      p {
+        display: none;
+      }
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  color: $primary-color;
+  font-weight: 700;
+
+  span {
+    font-size: 1.3rem;
+
+    @media (max-width: variables.$breakpoint-mobile) {
+      display: none;
+    }
+  }
+}
+
+.menu-toggle {
+  @include button-reset;
+  font-size: 18px;
+  color: $text-secondary;
+  padding: 8px;
+  border-radius: 4px;
+  @include transition;
+
+  &:hover {
+    background: $bg-secondary;
+    color: $primary-color;
+  }
+}
+
+// ================================
+// SIDEBAR
+// ================================
+
+.sidebar {
+  position: fixed;
+  top: $header-height;
+  left: 0;
+  width: $sidebar-width;
+  height: calc(100vh - #{$header-height});
+  background-color: #000c23; // Un azul muy oscuro para ambos temas
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 899;
+  @include transition(transform);
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.3);
+    }
+  }
+
+  &.collapsed {
+    transform: translateX(-$sidebar-width);
+
+    @media (max-width: variables.$breakpoint-mobile) {
+      transform: translateX(-$sidebar-width);
+    }
+  }
+
+  @media (max-width: variables.$breakpoint-mobile) {
+    transform: translateX(-$sidebar-width);
+
+    &.show {
+      transform: translateX(0);
+    }
+  }
+}
+
+.sidebar-menu {
+  padding: 20px 0;
+}
+
+.menu-section {
+  padding: 8px 32px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.menu-item {
+  margin: 4px 16px;
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  @include transition;
+  border: none;
+  background: none;
+  font-family: inherit;
+  font-size: inherit;
+  width: 100%;
+  text-align: left;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: $secondary-color;
+    font-weight: 600;
+  }
+
+  i {
+    width: 20px;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.menu-text {
+  font-size: 14px;
+  font-weight: 500;
+  flex: 1;
+}
+
+.submenu-arrow {
+  font-size: 12px;
+  @include transition(transform);
+
+  &.rotated {
+    transform: rotate(90deg);
+  }
+}
+
+// ================================
+// SUBMENÚ
+// ================================
+
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  @include transition(max-height, 0.4s, ease-in-out);
+
+  &.expanded {
+    max-height: 800px;
+  }
+
+  // Grupo estático: siempre visible, sin animación de despliegue.
+  &.submenu-static {
+    max-height: none;
+    overflow: visible;
+  }
+}
+
+// Header de grupo estático: rótulo no interactivo, sin ícono.
+.menu-link-static {
+  cursor: default;
+  color: rgba(255, 255, 255, 0.92);
+
+  &:hover {
+    background: none;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  .menu-text {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.submenu-item {
+  margin: 2px 16px 2px 48px;
+}
+
+// En grupos estáticos los ítems se alinean bajo el rótulo del grupo (no
+// indentados a la derecha): el ícono queda a la altura del texto del header.
+.submenu-static .submenu-item {
+  margin-left: 4px;
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 13px;
+  cursor: pointer;
+  @include transition;
+
+  .submenu-icon {
+    font-size: 13px;
+    width: 16px;
+    text-align: center;
+    flex-shrink: 0;
+    opacity: 0.85;
+  }
+  .submenu-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+  }
+
+  &.active {
+    background: rgba(255, 255, 255, 0.12);
+    color: $secondary-color;
+    font-weight: 500;
+    .submenu-icon {
+      opacity: 1;
+    }
+  }
+}
+
+.menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.15);
+  margin: 20px 16px;
+}
+
+// ================================
+// MAIN CONTENT
+// ================================
+
+.main-content {
+  flex: 1;
+  margin-top: $header-height;
+  margin-left: $sidebar-width;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - #{$header-height});
+  overflow: hidden;
+  @include transition(margin-left);
+
+  &.expanded {
+    margin-left: 0;
+  }
+
+  @media (max-width: variables.$breakpoint-mobile) {
+    margin-left: 0;
+  }
+}
+
+.content-area {
+  flex: 1;
+  padding: 1rem;
+  overflow: auto;
+}
+
+// Aviso de servidor sin respuesta (09/10/2026).
+.server-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+
+  span {
+    flex: 1;
+  }
+}
+
+.server-alert-retrying {
+  background: var(--color-d-bg);
+  border-color: var(--color-d-border);
+  color: var(--color-d-text);
+}
+
+.server-alert-down {
+  background: var(--color-m-bg);
+  border-color: var(--color-m-border);
+  color: var(--color-m-text);
+}
+
+// ================================
+// OVERLAY (MÓVIL)
+// ================================
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1998;
+  display: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
+  &.show {
+    display: block;
+  }
+}
+
+// ================================
+// FOOTER
+// ================================
+
+.footer {
+  background: $bg-primary;
+  border-top: 1px solid $border-color;
+  padding: 20px 30px;
+  text-align: center;
+  color: $text-secondary;
+  font-size: 14px;
+
+  @media (max-width: variables.$breakpoint-mobile) {
+    padding: 20px 15px;
+  }
+}

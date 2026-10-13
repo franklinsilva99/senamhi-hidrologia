@@ -1,0 +1,99 @@
+$sh-breakpoints: (
+  sm: 600px,
+  md: 800px,
+  lg: 1200px,
+  xl: 1600px,
+  xxl: 1800px,
+);
+
+.sh-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.sh-container-fluid {
+  gap: 0.8rem;
+  display: flex;
+  flex-direction: column;
+}
+
+@each $breakpoint, $value in $sh-breakpoints {
+  .sh-hide-at-#{$breakpoint} {
+    @media (min-width: $value) {
+      display: none !important;
+    }
+  }
+
+  .sh-show-at-#{$breakpoint} {
+    display: none;
+    @media (min-width: $value) {
+      display: block !important;
+    }
+  }
+
+  .sh-show-until-#{$breakpoint} {
+    @media (max-width: #{$value - 1px}) {
+      display: block !important;
+    }
+    @media (min-width: $value) {
+      display: none !important;
+    }
+  }
+}
+
+.sh-row {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.sh-row.space {
+  gap: 1rem;
+}
+
+@for $i from 1 through 12 {
+  .sh-col-#{$i} {
+    grid-column: span #{$i};
+  }
+  .sh-order-#{$i} {
+    order: #{$i};
+  }
+}
+
+@for $i from 1 through 11 {
+  .sh-offset-#{$i} {
+    grid-column-start: #{$i + 1};
+  }
+}
+
+@each $breakpoint, $size in $sh-breakpoints {
+  @media (min-width: $size) {
+    @for $i from 1 through 12 {
+      .sh-col-#{$breakpoint}-#{$i} {
+        grid-column: span #{$i};
+      }
+      .sh-order-#{$breakpoint}-#{$i} {
+        order: #{$i};
+      }
+    }
+
+    @for $i from 1 through 11 {
+      .sh-offset-#{$breakpoint}-#{$i} {
+        grid-column-start: #{$i + 1};
+      }
+    }
+  }
+}
+
+.sh-fluid-spacing-sm {
+  padding: clamp(0.5rem, 5vw, 1rem);
+}
+
+.sh-fluid-spacing-md {
+  padding: clamp(1rem, 5vw, 2rem);
+}
+
+.sh-fluid-spacing-lg {
+  padding: clamp(2rem, 5vw, 4rem);
+}

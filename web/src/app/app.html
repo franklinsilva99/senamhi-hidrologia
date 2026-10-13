@@ -1,0 +1,11 @@
+<div class="sh-loading-container">
+  <router-outlet></router-outlet>
+  @if (isLoading()) {
+    <div class="sh-loading">
+      <p-progressSpinner></p-progressSpinner>
+    </div>
+  }
+</div>
+
+<p-confirm-dialog defaultFocus="none"></p-confirm-dialog>
+<p-toast></p-toast>
