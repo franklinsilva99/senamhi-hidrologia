@@ -1,0 +1,56 @@
+<div class="monitoreo">
+  <div class="monitoreo-grid">
+    <p-card header="Mapa de estaciones">
+      <div id="mapa-estaciones" class="mapa"></div>
+    </p-card>
+
+    <p-card [header]="'Hidrograma — ' + (nombreSeleccionada() || 'Seleccione una estación')">
+      @if (hidrograma()) {
+        <div echarts [options]="hidrograma()!" class="hidrograma"></div>
+      } @else {
+        <div class="hidrograma-vacio">
+          Haga clic en una estación (mapa o tabla) para ver su serie de nivel y caudal.
+        </div>
+      }
+    </p-card>
+  </div>
+
+  <p-card header="Estaciones">
+    <p-table
+      [value]="estaciones()"
+      [loading]="cargando()"
+      [scrollable]="true"
+      scrollHeight="420px"
+    >
+      <ng-template #header>
+        <tr>
+          <th>Estación</th>
+          <th>Río</th>
+          <th>Variable</th>
+          <th>Valor actual</th>
+          <th>Estado</th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template #body let-fila>
+        <tr>
+          <td>{{ fila.station.estacion }}</td>
+          <td>{{ fila.station.rio }}</td>
+          <td>{{ fila.deteccion?.preferencia ?? '—' }}</td>
+          <td>{{ fila.deteccion?.valorActual ?? '—' }}</td>
+          <td>
+            <p-tag [value]="nivelDe(fila)" [style]="tagStyle(fila)" />
+          </td>
+          <td>
+            <p-button
+              label="Ver"
+              size="small"
+              [outlined]="true"
+              (onClick)="seleccionar(fila)"
+            />
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>

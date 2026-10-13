@@ -58,6 +58,11 @@ export class AdminLayout implements OnInit {
       icon: 'pi pi-home',
       url: '/',
     },
+    {
+      label: 'Monitoreo',
+      icon: 'pi pi-map-marker',
+      url: '/monitoreo',
+    },
   ];
 
   get systemName(): string {

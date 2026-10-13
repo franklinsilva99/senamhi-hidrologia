@@ -10,6 +10,15 @@ export const routes: Routes = [
         path: '',
         loadComponent: () =>
           import('./features/private/pages/home-page/home-page').then((m) => m.HomePage),
+        data: { title: 'Resumen', subtitle: 'Estado general del monitoreo hidrológico' },
+      },
+      {
+        path: 'monitoreo',
+        loadComponent: () =>
+          import('./features/private/pages/monitoreo-page/monitoreo-page').then(
+            (m) => m.MonitoreoPage,
+          ),
+        data: { title: 'Monitoreo', subtitle: 'Mapa de estaciones y estado por umbral' },
       },
     ],
   },
