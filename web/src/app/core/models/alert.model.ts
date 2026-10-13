@@ -1,11 +1,6 @@
 import { NivelAlerta, TipoAviso, Variable } from './enums';
 import { ObservationView } from './observation.model';
-
-export interface Umbrales {
-  amarilla: number;
-  naranja: number;
-  roja: number;
-}
+import { Umbrales } from './config-record.model';
 
 /** Aviso hidrológico. */
 export interface Alert {
