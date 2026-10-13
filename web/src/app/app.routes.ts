@@ -8,9 +8,8 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () =>
-          import('./features/private/pages/home-page/home-page').then((m) => m.HomePage),
-        data: { title: 'Resumen', subtitle: 'Estado general del monitoreo hidrológico' },
+        redirectTo: 'monitoreo',
+        pathMatch: 'full',
       },
       {
         path: 'monitoreo',
