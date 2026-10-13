@@ -1,0 +1,46 @@
+<div class="pronostico">
+  @if (cargando()) {
+    <div class="cargando">
+      <p-progressSpinner />
+    </div>
+  }
+
+  <div class="mapa-contenedor">
+    <div id="mapa-pronostico" class="mapa"></div>
+
+    @if (seleccionada()) {
+      <div class="hidrograma-overlay">
+        <div class="hidrograma-card">
+          <div class="hidrograma-header">
+            <div>
+              <h3 class="hidrograma-titulo">{{ titulo() }}</h3>
+              <p class="hidrograma-subtitulo">{{ subtitulo() }}</p>
+            </div>
+            <p-button
+              icon="pi pi-times"
+              [text]="true"
+              [rounded]="true"
+              aria-label="Cerrar"
+              (onClick)="cerrar()"
+            />
+          </div>
+
+          @if (hidrograma()) {
+            <div class="hidrograma-chart-contenedor">
+              <div echarts [options]="hidrograma()!" class="hidrograma-chart"></div>
+              <div class="hidrograma-watermark">SENAMHI</div>
+            </div>
+          }
+
+          <div class="hidrograma-leyenda">
+            <span><i style="background: #e60000"></i> Rojo</span>
+            <span><i style="background: #ff9900"></i> Naranja</span>
+            <span><i style="background: #f9cf00"></i> Amarillo</span>
+            <span><i style="background: #001eff"></i> Caudal Promedio</span>
+            <span><i class="punteada"></i> Caudal Pronosticado</span>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

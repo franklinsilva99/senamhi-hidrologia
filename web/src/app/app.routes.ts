@@ -20,6 +20,28 @@ export const routes: Routes = [
           ),
         data: { title: 'Monitoreo', subtitle: 'Mapa de estaciones y estado por umbral' },
       },
+      {
+        path: 'pronostico',
+        loadComponent: () =>
+          import('./features/private/pages/pronostico-page/pronostico-page').then(
+            (m) => m.PronosticoPage,
+          ),
+        data: { title: 'Pronóstico', subtitle: 'Pronóstico hidrológico diario' },
+      },
+      {
+        path: 'avisos',
+        loadComponent: () =>
+          import('./features/private/pages/avisos-page/avisos-page').then((m) => m.AvisosPage),
+        data: { title: 'Avisos', subtitle: 'Avisos hidrológicos' },
+      },
+      {
+        path: 'avisos/:ca',
+        loadComponent: () =>
+          import('./features/private/pages/aviso-detalle-page/aviso-detalle-page').then(
+            (m) => m.AvisoDetallePage,
+          ),
+        data: { title: 'Detalle de Aviso', subtitle: 'Aviso hidrológico' },
+      },
     ],
   },
   {

@@ -1,0 +1,92 @@
+<div class="avisos">
+  <div class="filtros">
+    <div class="chips">
+      <button
+        type="button"
+        [class.activo]="filtro() === 'todos'"
+        (click)="cambiarFiltro('todos')"
+      >
+        Todos ({{ counts.todos }})
+      </button>
+      <button
+        type="button"
+        class="rojo"
+        [class.activo]="filtro() === 'rojo'"
+        (click)="cambiarFiltro('rojo')"
+      >
+        Rojo ({{ counts.rojo }})
+      </button>
+      <button
+        type="button"
+        class="naranja"
+        [class.activo]="filtro() === 'naranja'"
+        (click)="cambiarFiltro('naranja')"
+      >
+        Naranja ({{ counts.naranja }})
+      </button>
+      <button
+        type="button"
+        class="amarillo"
+        [class.activo]="filtro() === 'amarillo'"
+        (click)="cambiarFiltro('amarillo')"
+      >
+        Amarillo ({{ counts.amarillo }})
+      </button>
+      <button
+        type="button"
+        class="vigentes"
+        [class.activo]="filtro() === 'vigentes'"
+        (click)="cambiarFiltro('vigentes')"
+      >
+        Avisos Vigentes ({{ counts.vigentes }})
+      </button>
+    </div>
+
+    <div class="busqueda">
+      <input
+        pInputText
+        type="search"
+        placeholder="Filtrar por río, estación o nivel..."
+        [(ngModel)]="search"
+      />
+    </div>
+  </div>
+
+  <p-table
+    [value]="filtrados"
+    [loading]="cargando()"
+    [scrollable]="true"
+    scrollHeight="520px"
+    sortMode="multiple"
+  >
+    <ng-template #header>
+      <tr>
+        <th pSortableColumn="titulo">Aviso <p-sortIcon field="titulo" /></th>
+        <th pSortableColumn="nro">Nro. <p-sortIcon field="nro" /></th>
+        <th pSortableColumn="inicio">Inicio <p-sortIcon field="inicio" /></th>
+        <th pSortableColumn="fin">Fin <p-sortIcon field="fin" /></th>
+        <th pSortableColumn="duracionHoras">Duración <p-sortIcon field="duracionHoras" /></th>
+        <th pSortableColumn="nivel">Nivel <p-sortIcon field="nivel" /></th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-fila>
+      <tr [class.vigente]="fila.alert.vigente">
+        <td>
+          <a [routerLink]="['/avisos', fila.alert.ca]">{{ fila.alert.titulo }}</a>
+        </td>
+        <td>{{ fila.alert.nro }}{{ fila.alert.vigente ? ' (vigente)' : '' }}</td>
+        <td>{{ fila.alert.inicio }}</td>
+        <td>{{ fila.alert.fin }}</td>
+        <td class="text-right">{{ fila.alert.duracionHoras }}</td>
+        <td class="text-center nivel" [style.color]="nivelColor(fila.alert.nivel)">
+          {{ fila.alert.nivel }}
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template #emptymessage>
+      <tr>
+        <td colspan="6" class="vacio">Sin avisos para el filtro seleccionado.</td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

@@ -1,0 +1,118 @@
+.pronostico {
+  position: relative;
+}
+
+.cargando {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.mapa-contenedor {
+  position: relative;
+}
+
+.mapa {
+  height: 640px;
+  width: 100%;
+  border-radius: 8px;
+  z-index: 0;
+}
+
+.hidrograma-overlay {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1100;
+  padding: 0 12px;
+  pointer-events: none;
+}
+
+.hidrograma-card {
+  pointer-events: auto;
+  background: var(--color-bg-card, #fff);
+  border: 1px solid var(--color-border, #e2e8f0);
+  border-radius: 8px;
+  box-shadow: var(--shadow-card);
+  padding: 1rem;
+  width: min(680px, 100%);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.hidrograma-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.hidrograma-titulo {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.hidrograma-subtitulo {
+  margin: 0.15rem 0 0;
+  font-size: 0.8rem;
+  color: var(--color-text-muted, #64748b);
+}
+
+.hidrograma-chart-contenedor {
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.hidrograma-chart {
+  height: 300px;
+  width: 100%;
+}
+
+.hidrograma-watermark {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  font-size: 2rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: rgba(15, 23, 42, 0.07);
+}
+
+.hidrograma-leyenda {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--color-text-body, #334155);
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+
+  i {
+    display: inline-block;
+    width: 1rem;
+    height: 2px;
+
+    &.punteada {
+      border-top: 2px dashed #1d4ed8;
+      height: 0;
+      background: none;
+    }
+  }
+}

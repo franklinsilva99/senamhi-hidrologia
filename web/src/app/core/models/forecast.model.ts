@@ -7,3 +7,14 @@ export interface ForecastDiario {
   modelos: string[];
   precision: string;
 }
+
+/** Modelo de pronóstico ingresado por la DZ. */
+export interface ForecastInput {
+  id: number;
+  stationId: string;
+  fecha: string;
+  modelo: string;
+  valor: number;
+  usuario: string;
+  padre?: string;
+}

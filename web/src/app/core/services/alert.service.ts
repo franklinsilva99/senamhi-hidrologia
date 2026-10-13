@@ -11,4 +11,8 @@ export class AlertService {
   listar(): Observable<Alert[]> {
     return this.api.getAll<Alert>('alerts');
   }
+
+  porCa(ca: string): Observable<Alert> {
+    return this.api.get<Alert>(`alerts/${ca}`);
+  }
 }

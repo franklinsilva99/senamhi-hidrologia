@@ -63,6 +63,16 @@ export class AdminLayout implements OnInit {
       icon: 'pi pi-map-marker',
       url: '/monitoreo',
     },
+    {
+      label: 'Pronóstico',
+      icon: 'pi pi-chart-line',
+      url: '/pronostico',
+    },
+    {
+      label: 'Avisos',
+      icon: 'pi pi-exclamation-triangle',
+      url: '/avisos',
+    },
   ];
 
   get systemName(): string {

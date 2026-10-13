@@ -1,0 +1,78 @@
+<div class="aviso-detalle">
+  @if (noEncontrado()) {
+    <p class="no-encontrado">Aviso no encontrado</p>
+  } @else if (aviso()) {
+    <div class="cabecera">
+      <div class="cabecera-derecha">
+        <span class="cabecera-nro">Aviso N°{{ aviso()!.nro }}</span>
+        <span
+          class="badge-nivel"
+          [style.background]="badge!.bg"
+          [style.color]="badge!.color"
+        >
+          {{ aviso()!.nivel }}
+        </span>
+      </div>
+    </div>
+    <p class="fecha-emision">Fecha de emisión: {{ aviso()!.fechaEmision }}</p>
+
+    <h2 class="titulo">{{ aviso()!.titulo }}</h2>
+
+    <section class="metadatos">
+      <p><strong>Fecha de inicio:</strong> {{ formatFechaES(aviso()!.inicio) }}</p>
+      <p><strong>Fecha de final:</strong> {{ formatFechaES(aviso()!.fin) }}</p>
+      <p>
+        <strong>Plazo:</strong>
+        {{ aviso()!.plazo === 'extendido' ? 'Extendido' : 'Normal' }}
+      </p>
+      <p class="descripcion">{{ aviso()!.descripcion }}</p>
+    </section>
+
+    <section class="hidrograma">
+      <h3 class="hidrograma-titulo">HIDROGRAMA DE {{ aviso()!.cuerpoAgua }}</h3>
+      @if (station()) {
+        <p class="hidrograma-estacion">ESTACIÓN {{ station()!.estacion.toUpperCase() }}</p>
+      }
+      @if (opcionChart()) {
+        <div echarts [options]="opcionChart()!" class="hidrograma-chart"></div>
+      }
+      <p class="nota">Nota: Información en tiempo casi real, sujeto a revisión y validación</p>
+    </section>
+
+    @if (station()) {
+      <section class="tabla">
+        <table>
+          <thead>
+            <tr>
+              <th>Cuerpo de Agua</th>
+              <th>Estación</th>
+              <th>Distrito</th>
+              <th>{{ etiquetaActual }}</th>
+              <th>Umbral Rojo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{ station()!.rio.toUpperCase() }}</td>
+              <td>{{ station()!.estacion.toUpperCase() }}</td>
+              <td>{{ (station()!.distritos.join(', ') || '—').toUpperCase() }}</td>
+              <td>{{ valorActual?.toFixed(2) ?? '—' }}</td>
+              <td>{{ umbralRojoAbs?.toFixed(2) ?? '—' }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    }
+
+    <section class="leyenda">
+      @for (p of peligros; track p.nivel) {
+        <div class="leyenda-fila">
+          <div class="leyenda-nivel" [style.background]="p.bg" [style.color]="p.color">
+            {{ p.nivel }}
+          </div>
+          <div class="leyenda-texto">{{ p.texto }}</div>
+        </div>
+      }
+    </section>
+  }
+</div>

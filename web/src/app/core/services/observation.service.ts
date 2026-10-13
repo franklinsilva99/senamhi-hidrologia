@@ -20,4 +20,9 @@ export class ObservationService {
   latest(): Observable<Record<string, ObservationView>> {
     return this.api.get<Record<string, ObservationView>>('observations/latest');
   }
+
+  /** Caudal promedio diario (fecha → promedio), para el hidrograma de pronóstico. */
+  caudalPromedioDiario(stationId: number): Observable<Record<string, number>> {
+    return this.api.get<Record<string, number>>(`stations/${stationId}/caudal/diario`);
+  }
 }
