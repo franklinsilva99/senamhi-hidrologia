@@ -6,6 +6,7 @@ import type { EChartsCoreOption } from 'echarts/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TopicBanner } from '../../../../shared/components/topic-banner/topic-banner';
 
 import { StationService } from '../../../../core/services/station.service';
 import { DetectionService } from '../../../../core/services/detection.service';
@@ -34,7 +35,7 @@ interface FilaEstacion {
 
 @Component({
   selector: 'app-monitoreo-page',
-  imports: [ButtonModule, ProgressSpinnerModule, NgxEchartsDirective],
+  imports: [ButtonModule, ProgressSpinnerModule, NgxEchartsDirective, TopicBanner],
   providers: [provideEchartsCore({ echarts })],
   templateUrl: './monitoreo-page.html',
   styleUrl: './monitoreo-page.scss',

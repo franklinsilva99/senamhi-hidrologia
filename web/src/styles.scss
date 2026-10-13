@@ -8,3 +8,36 @@
 @use 'assets/scss/utils';
 @use 'assets/scss/prime';
 @use 'assets/scss/global';
+
+// ── Pestañas de producto (estructura del PoC, colores de la plantilla) ──────
+.tabs-producto {
+  max-width: 80rem;
+  margin: 1rem auto 0;
+  padding: 0 1rem;
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid #d1d5db;
+
+  .tab {
+    display: inline-block;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.85rem;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: -1px;
+
+    &.activa {
+      background: #fff;
+      border-color: #d1d5db;
+      color: #374151;
+      font-weight: 500;
+    }
+
+    &.deshabilitada {
+      color: #9ca3af;
+      cursor: not-allowed;
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,3 +1,13 @@
+<app-topic-banner title="Hidrología / Avisos Hidrológicos"></app-topic-banner>
+
+@if (aviso()) {
+  <nav class="tabs-producto">
+    <a class="tab" routerLink="/avisos">Mapa</a>
+    <a class="tab" routerLink="/avisos">Lista</a>
+    <span class="tab activa">Aviso # {{ aviso()!.nro }}</span>
+  </nav>
+}
+
 <div class="aviso-detalle">
   @if (noEncontrado()) {
     <p class="no-encontrado">Aviso no encontrado</p>

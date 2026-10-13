@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
+import { PublicLayout } from './features/public/layouts/public-layout/public-layout';
 import { AdminLayout } from './features/private/layouts/admin-layout/admin-layout';
 
 export const routes: Routes = [
   {
     path: '',
-    component: AdminLayout,
+    component: PublicLayout,
     children: [
       {
         path: '',
@@ -17,7 +18,6 @@ export const routes: Routes = [
           import('./features/private/pages/monitoreo-page/monitoreo-page').then(
             (m) => m.MonitoreoPage,
           ),
-        data: { title: 'Monitoreo', subtitle: 'Mapa de estaciones y estado por umbral' },
       },
       {
         path: 'pronostico',
@@ -25,13 +25,11 @@ export const routes: Routes = [
           import('./features/private/pages/pronostico-page/pronostico-page').then(
             (m) => m.PronosticoPage,
           ),
-        data: { title: 'Pronóstico', subtitle: 'Pronóstico hidrológico diario' },
       },
       {
         path: 'avisos',
         loadComponent: () =>
           import('./features/private/pages/avisos-page/avisos-page').then((m) => m.AvisosPage),
-        data: { title: 'Avisos', subtitle: 'Avisos hidrológicos' },
       },
       {
         path: 'avisos/:ca',
@@ -39,47 +37,47 @@ export const routes: Routes = [
           import('./features/private/pages/aviso-detalle-page/aviso-detalle-page').then(
             (m) => m.AvisoDetallePage,
           ),
-        data: { title: 'Detalle de Aviso', subtitle: 'Aviso hidrológico' },
       },
+    ],
+  },
+  {
+    path: 'admin',
+    component: AdminLayout,
+    children: [
       {
-        path: 'admin',
+        path: '',
         loadComponent: () =>
           import('./features/private/pages/admin-dashboard-page/admin-dashboard-page').then(
             (m) => m.AdminDashboardPage,
           ),
-        data: { title: 'Administración', subtitle: 'Panel de administración' },
       },
       {
-        path: 'admin/avisos',
+        path: 'avisos',
         loadComponent: () =>
           import('./features/private/pages/admin-avisos-page/admin-avisos-page').then(
             (m) => m.AdminAvisosPage,
           ),
-        data: { title: 'Gestionar Avisos', subtitle: 'Detección y publicación de avisos' },
       },
       {
-        path: 'admin/config',
+        path: 'config',
         loadComponent: () =>
           import('./features/private/pages/admin-config-page/admin-config-page').then(
             (m) => m.AdminConfigPage,
           ),
-        data: { title: 'Configuración General', subtitle: 'Umbrales y vigencia' },
       },
       {
-        path: 'admin/pronostico',
+        path: 'pronostico',
         loadComponent: () =>
           import('./features/private/pages/admin-pronostico-page/admin-pronostico-page').then(
             (m) => m.AdminPronosticoPage,
           ),
-        data: { title: 'Cargar Pronóstico', subtitle: 'Registro de modelos' },
       },
       {
-        path: 'admin/centros-poblados',
+        path: 'centros-poblados',
         loadComponent: () =>
           import(
             './features/private/pages/admin-centros-poblados-page/admin-centros-poblados-page'
           ).then((m) => m.AdminCentrosPobladosPage),
-        data: { title: 'Centros Poblados', subtitle: 'Catálogo de centros poblados' },
       },
     ],
   },

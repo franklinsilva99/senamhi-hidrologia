@@ -6,6 +6,7 @@ import type { EChartsCoreOption } from 'echarts/core';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { TopicBanner } from '../../../../shared/components/topic-banner/topic-banner';
 
 import { StationService } from '../../../../core/services/station.service';
 import { ForecastService } from '../../../../core/services/forecast.service';
@@ -39,7 +40,7 @@ interface Punto {
 
 @Component({
   selector: 'app-pronostico-page',
-  imports: [ButtonModule, ProgressSpinnerModule, NgxEchartsDirective],
+  imports: [ButtonModule, ProgressSpinnerModule, NgxEchartsDirective, TopicBanner],
   providers: [provideEchartsCore({ echarts })],
   templateUrl: './pronostico-page.html',
   styleUrl: './pronostico-page.scss',

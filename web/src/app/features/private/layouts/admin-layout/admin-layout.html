@@ -1,200 +1,54 @@
 <div class="admin-layout">
-  <header class="header">
-    <div class="header-left">
-      <button
-        class="menu-toggle"
-        (click)="toggleSidebar()"
-      >
-        <i class="pi pi-bars"></i>
-      </button>
-      <div class="logo">
-        <p-image
-          src="assets/images/logo.svg"
-          width="60"
-        ></p-image>
-        @if (!currentTitle()) {
-          <span>{{ systemName }}</span>
-        }
+  <aside class="sidebar">
+    <div class="logo">SC PHISIS</div>
+
+    <div class="usuario">
+      <div class="avatar">
+        <i class="pi pi-user"></i>
+      </div>
+      <div>
+        <p class="nombre">{{ usuario.nombre }}</p>
+        <p class="usuario-nombre">{{ usuario.usuario }}</p>
       </div>
     </div>
-    @if (currentTitle()) {
-      <div class="header-title">
-        <h1>{{ currentTitle() }}</h1>
-        @if (currentSubtitle()) {
-          <p>{{ currentSubtitle() }}</p>
-        }
-      </div>
-    }
-    <div class="header-right">
-      <p-button
-        [icon]="themeService.darkMode() ? 'pi pi-sun' : 'pi pi-moon'"
-        [variant]="'text'"
-        [rounded]="true"
-        (click)="themeService.toggleDarkMode()"
-        severity="secondary"
-        styleClass="theme-toggle-btn"
-        [style]="{
-          color: 'inherit',
-        }"
-      />
-      <p-image
-        src="assets/images/logo-senamhi.svg"
-        width="80"
-      ></p-image>
-    </div>
-  </header>
-  <aside
-    class="sidebar"
-    [class.collapsed]="sidebarCollapsed"
-    [class.show]="sidebarShow"
-  >
-    <nav class="sidebar-menu">
-      @for (item of menuItems; track item) {
-        @if (item.items && item.static) {
-          <div class="menu-item menu-item-static">
-            <div class="menu-link menu-link-static">
-              <span class="menu-text">{{ item.label }}</span>
-            </div>
 
-            <div class="submenu submenu-static">
-              @for (subItem of item.items; track subItem) {
-                <div class="submenu-item">
-                  <a
-                    [routerLink]="subItem.url"
-                    class="submenu-link"
-                    routerLinkActive="active"
-                    (click)="onMenuClick()"
-                  >
-                    @if (subItem.icon) {
-                      <i
-                        class="submenu-icon"
-                        [class]="subItem.icon"
-                      ></i>
-                    }
-                    <span class="submenu-text">{{ subItem.label }}</span>
-                  </a>
-                </div>
-              }
-            </div>
-          </div>
-        }
-        @if (item.items && !item.static) {
-          <div class="menu-item">
-            <button
-              class="menu-link"
-              (click)="toggleSubmenu(item)"
-            >
-              <i [class]="item.icon"></i>
-              <span class="menu-text">{{ item.label }}</span>
-              <i
-                class="pi pi-chevron-right submenu-arrow"
-                [class.rotated]="item.expanded"
-              ></i>
-            </button>
-
-            <div
-              class="submenu"
-              [class.expanded]="item.expanded"
-            >
-              @for (subItem of item.items; track subItem) {
-                <div class="submenu-item">
-                  <a
-                    [routerLink]="subItem.url"
-                    class="submenu-link"
-                    routerLinkActive="active"
-                    (click)="onMenuClick()"
-                  >
-                    @if (subItem.icon) {
-                      <i
-                        class="submenu-icon"
-                        [class]="subItem.icon"
-                      ></i>
-                    }
-                    <span class="submenu-text">{{ subItem.label }}</span>
-                  </a>
-                </div>
-              }
-            </div>
-          </div>
-        }
-        @if (!item.items && item.url) {
-          <div class="menu-item">
-            <a
-              [routerLink]="item.url"
-              class="menu-link"
-              routerLinkActive="active"
-              (click)="onMenuClick()"
-            >
-              <i [class]="item.icon"></i>
-              <span class="menu-text">{{ item.label }}</span>
-            </a>
-          </div>
-        }
-        @if (item.label === 'divider') {
-          <div class="menu-divider"></div>
-        }
-        @if (item.label && !item.url && !item.items && item.label !== 'divider') {
-          <div class="menu-section">
-            {{ item.label }}
-          </div>
-        }
+    <nav class="nav">
+      @for (item of navItems; track item.href) {
+        <a
+          [routerLink]="item.href"
+          routerLinkActive="activo"
+          [routerLinkActiveOptions]="item.exact ? { exact: true } : {}"
+        >
+          <i [class]="item.icon"></i>
+          <span>{{ item.label }}</span>
+        </a>
       }
     </nav>
   </aside>
-  <button
-    class="sidebar-overlay"
-    aria-label="Cerrar sidebar"
-    [class.show]="sidebarShow"
-    (click)="closeSidebar()"
-  ></button>
-  <main
-    class="main-content"
-    [class.expanded]="sidebarCollapsed"
-  >
-    <div class="content-area">
-      <!-- Aviso único cuando el Backend no responde (09/10/2026). -->
-      @if (serverStatus.state() === 'retrying') {
-        <div
-          class="server-alert server-alert-retrying"
-          role="status"
-        >
-          <i class="pi pi-spin pi-spinner"></i>
-          <span>
-            El servidor del sistema no está respondiendo. Reintentando automáticamente (intento
-            {{ serverStatus.attempt() }} de {{ serverStatus.maxAttempts() }})…
-          </span>
-        </div>
-      } @else if (serverStatus.state() === 'down') {
-        <div
-          class="server-alert server-alert-down"
-          role="alert"
-        >
-          <i class="pi pi-exclamation-triangle"></i>
-          <span>
-            El servidor del sistema no responde. Los datos de esta pantalla pueden estar
-            incompletos: no los use para reportes ni análisis hasta que cargue de nuevo.
-          </span>
-          <p-button
-            label="Reintentar"
-            icon="pi pi-refresh"
-            size="small"
-            severity="danger"
-            (onClick)="reload()"
-          ></p-button>
-        </div>
-      }
-      <router-outlet></router-outlet>
-    </div>
-    <footer class="footer">
-      <p>
-        &copy;
-        {{ year }}
-        {{ systemAuthor }}
-        | SENAMHI
-      </p>
-    </footer>
-  </main>
 
-  <!-- Overlay de progreso global (cargas / guardados) -->
-  <app-progress-overlay></app-progress-overlay>
+  <div class="principal">
+    <header class="header">
+      <div class="logos">
+        <div class="logo-peru">
+          <span>🇵🇪</span>
+          <div>
+            <p class="bold">PERÚ</p>
+            <p class="small">Ministerio del Ambiente</p>
+          </div>
+        </div>
+        <div class="sep"></div>
+        <div class="logo-senamhi">
+          <span>🌊</span>
+          <span class="bold">Senamhi</span>
+        </div>
+      </div>
+      <a routerLink="/monitoreo" class="salir" title="Salir al portal">
+        <i class="pi pi-sign-out"></i>
+      </a>
+    </header>
+
+    <main class="contenido">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
 </div>

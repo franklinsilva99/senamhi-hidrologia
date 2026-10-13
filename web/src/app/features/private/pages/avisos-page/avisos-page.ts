@@ -5,6 +5,7 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { TopicBanner } from '../../../../shared/components/topic-banner/topic-banner';
 
 import { AlertService } from '../../../../core/services/alert.service';
 import { StationService } from '../../../../core/services/station.service';
@@ -81,7 +82,7 @@ const RECOMENDACION: Record<TipoAviso, Record<NivelAlerta, string>> = {
 
 @Component({
   selector: 'app-avisos-page',
-  imports: [TableModule, InputTextModule, FormsModule, RouterLink],
+  imports: [TableModule, InputTextModule, FormsModule, RouterLink, TopicBanner],
   templateUrl: './avisos-page.html',
   styleUrl: './avisos-page.scss',
 })

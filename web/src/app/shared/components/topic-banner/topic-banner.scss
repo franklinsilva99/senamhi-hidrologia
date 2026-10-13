@@ -1,0 +1,133 @@
+.institucional {
+  background: #f2f2f2;
+  border-bottom: 1px solid #d1d5db;
+  font-size: 0.72rem;
+  color: #4b5563;
+
+  .contenido {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0.35rem 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem;
+  }
+
+  .izq {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    .bold {
+      font-weight: 700;
+      color: #333;
+    }
+
+    .sep {
+      color: #d1d5db;
+    }
+  }
+
+  .der strong {
+    color: #333;
+  }
+}
+
+.banner {
+  background: linear-gradient(135deg, #002259 0%, #0047ba 100%);
+  color: #fff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  border-bottom: 4px solid #0093dd;
+
+  .contenido {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+  }
+
+  .banner-flex {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .badge-fila {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .badge {
+    display: inline-flex;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    font-size: 0.72rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .subtitle {
+    font-size: 0.72rem;
+    color: #bfdbfe;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .description {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    color: #dbeafe;
+    max-width: 42rem;
+  }
+
+  .estado {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+  .estado-texto {
+    text-align: right;
+  }
+
+  .estado-titulo {
+    font-size: 0.72rem;
+    color: #bfdbfe;
+  }
+
+  .estado-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+
+  .estado-dot {
+    width: 0.65rem;
+    height: 0.65rem;
+    border-radius: 50%;
+    background: #4ade80;
+    animation: pulse 1.5s infinite;
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}

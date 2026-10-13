@@ -1,0 +1,24 @@
+<div class="public-layout">
+  <header class="header">
+    <div class="contenido">
+      <div>
+        <p class="titulo">SENAMHI · DHI Contingencia</p>
+        <p class="subtitulo">Monitoreo · Pronóstico · Avisos</p>
+      </div>
+      <nav class="nav">
+        <a routerLink="/monitoreo" routerLinkActive="activo">Monitoreo</a>
+        <a routerLink="/pronostico" routerLinkActive="activo">Pronóstico</a>
+        <a routerLink="/avisos" routerLinkActive="activo">Avisos</a>
+        <a routerLink="/admin" class="admin-link">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <div class="contenido-flex">
+    <router-outlet></router-outlet>
+  </div>
+
+  <footer class="footer">
+    <div class="contenido">SENAMHI</div>
+  </footer>
+</div>

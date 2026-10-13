@@ -3,7 +3,9 @@ import { ActivatedRoute } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import * as echarts from 'echarts';
 import type { EChartsCoreOption } from 'echarts/core';
+import { RouterLink } from '@angular/router';
 import { NgxEchartsDirective, provideEchartsCore } from 'ngx-echarts';
+import { TopicBanner } from '../../../../shared/components/topic-banner/topic-banner';
 
 import { AlertService } from '../../../../core/services/alert.service';
 import { StationService } from '../../../../core/services/station.service';
@@ -58,7 +60,7 @@ const MESES = [
 
 @Component({
   selector: 'app-aviso-detalle-page',
-  imports: [NgxEchartsDirective],
+  imports: [NgxEchartsDirective, TopicBanner, RouterLink],
   providers: [provideEchartsCore({ echarts })],
   templateUrl: './aviso-detalle-page.html',
   styleUrl: './aviso-detalle-page.scss',

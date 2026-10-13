@@ -1,0 +1,36 @@
+<header class="institucional">
+  <div class="contenido">
+    <div class="izq">
+      <span class="bold">GOBIERNO DEL PERÚ</span>
+      <span class="sep">|</span>
+      <span>Ministerio del Ambiente</span>
+    </div>
+    <div class="der">
+      <span>Servicio Nacional de Meteorología e Hidrología del Perú - <strong>SENAMHI</strong></span>
+    </div>
+  </div>
+</header>
+
+<section class="banner">
+  <div class="contenido banner-flex">
+    <div>
+      <div class="badge-fila">
+        <span class="badge">{{ badge }}</span>
+        @if (subtitle) {
+          <span class="subtitle">{{ subtitle }}</span>
+        }
+      </div>
+      <h1>{{ title }}</h1>
+      @if (description) {
+        <p class="description">{{ description }}</p>
+      }
+    </div>
+    <div class="estado">
+      <div class="estado-texto">
+        <div class="estado-titulo">Actualización Permanente</div>
+        <div class="estado-label">Red Hidrológica Nacional</div>
+      </div>
+      <div class="estado-dot"></div>
+    </div>
+  </div>
+</section>
